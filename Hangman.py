@@ -22,7 +22,7 @@ def choose_word():
     if choice_level == 'easy':
         word_chosen = random.choice(listofsecrets)
     elif choice_level == 'medium':
-        word_chosen = random.choice(listofsecrets2)
+        word_chosen = random.choice(listofsecrets2) #what words are chosen depend upon the user's choices
     elif choice_level == 'hard':
         word_chosen = random.choice(listofsecrets3)
     else:
@@ -30,6 +30,8 @@ def choose_word():
         choose_word()
         
 def disguise():
+    
+#disguises intitally so that user knows what to expect from word    
     for char in word_chosen:
         if char == ' ':
             print (' ', end='')
@@ -50,7 +52,7 @@ def hangman():
     guessed_letters.append(letter_guess) #stores character in array
     correct_guess = False
     win_state = True
-    for char in word_chosen: #prints out the letters as disguised
+    for char in word_chosen: #prints out the letters as disguised or revealed, depending upon letters in array
         if char in guessed_letters:
             print (char, end='')
         elif char == ' ':
@@ -63,9 +65,11 @@ def hangman():
     if correct_guess == False:
         num_guess = num_guess - 1
     if win_state == False:
+    #prints out what happens when the user gets a letter wrong
         print('')
         print ("You have", num_guess,"wrong guesses left")
     else:
+    #win state event
         print('')
         print('Correct word =', word_chosen)
         print("Congratulations, you have won!")
